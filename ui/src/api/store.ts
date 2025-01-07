@@ -1,18 +1,18 @@
-import { configureStore } from "@reduxjs/toolkit";
-import { apiSlice } from "@/api/apiSlice";
-import logger from "redux-logger";
+import { configureStore } from '@reduxjs/toolkit';
+import logger from 'redux-logger';
+import { apiSlice } from '@/api/apiSlice';
 
 const store = configureStore({
   reducer: {
     [apiSlice.reducerPath]: apiSlice.reducer,
   },
   middleware: (getDefaultMiddleware) => {
-    if (import.meta.env.MODE !== "production") {
+    if (import.meta.env.MODE !== 'production') {
       return getDefaultMiddleware().concat(logger, apiSlice.middleware);
     }
     return getDefaultMiddleware().concat(apiSlice.middleware);
   },
-  devTools: import.meta.env.MODE !== "production",
+  devTools: import.meta.env.MODE !== 'production',
 });
 
 // Infer the `RootState` and `AppDispatch` types from the store itself
