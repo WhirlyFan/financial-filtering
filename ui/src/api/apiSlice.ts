@@ -1,6 +1,5 @@
 // Import the RTK Query methods from the React-specific entry point
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { User } from '@/utils/types';
 
 // Define our single API slice object
 export const apiSlice = createApi({
@@ -14,6 +13,10 @@ export const apiSlice = createApi({
     // The `getUsers` endpoint is a "query" operation that returns data
     // TODO: Add TS types for the response data (import from from a types.ts file)
     // TODO: Abstract the endpoints into their own file
+    getFMP: builder.query({
+      query: () => '/fmp',
+      providesTags: ['FMP'],
+    })
     getUsers: builder.query({
       // Based off the reducer path set above, the URL for the request is '/api/users'
       query: () => '/users',

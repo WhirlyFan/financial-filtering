@@ -7,7 +7,7 @@ def seed_users():
     demo = User(username="Demo", email="demo@test.com", password="password")
     marnie = User(username="Marnie", email="marnie@test.com", password="password")
     bobbie = User(username="Bobbie", email="bobbie@test.com", password="password")
-    whirlyfan = User(username="Whirlyfan", email="whirly@test.com", password="password")
+    whirlyfan = User(username="WhirlyFan", email="whirly@test.com", password="password")
 
     db.session.add_all([demo, marnie, bobbie, whirlyfan])
 

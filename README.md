@@ -3,15 +3,6 @@
 A financial data filtering app using data from a single API endpoint. The app fetches
 annual income statements for AAPL (Apple) and allow users to filter and analyze key metrics
 
-## [Live Demo](https://flask-react-starter.onrender.com/)
-![image](https://github.com/WhirlyFan/flask-react-starter/assets/75882197/232ec78c-86e7-4988-9c01-b7af562dfd63)
-NOTE: This is using render's free tier so it may take a moment before loading in:
-- https://flask-react-starter.onrender.com/
-
-### Demo user login:
-- username: demo@test.com
-- password: password
-
 ## Getting started
 NOTE: This is assuming you have Node>=16.19.1 installed
 
@@ -41,6 +32,7 @@ NOTE: This is assuming you have Node>=16.19.1 installed
       ```
       pip freeze > requirements.txt
       ```
+      Then convert that to an environment.yml file (You can use ChatGPT or do it by hand, I'm sure a tool exists that I don't know about)
 
 3. Create a **.env** file based on the example with proper settings for your
    development environment (There are 2, 1 for backend (in project root folder) and one in /ui/)
