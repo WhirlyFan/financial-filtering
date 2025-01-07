@@ -4,6 +4,17 @@ export default {
   content: ['./index.html', './src/**/*.{ts,tsx,js,jsx}'],
   theme: {
     extend: {
+      keyframes: {
+        shine: {
+          '0%': { backgroundPosition: '200% 0' },
+          '25%': { backgroundPosition: '-200% 0' },
+          '100%': { backgroundPosition: '-200% 0' },
+        },
+      },
+      animation: {
+        shine: 'shine 3s ease-out infinite',
+      },
+
       borderRadius: {
         lg: 'var(--radius)',
         md: 'calc(var(--radius) - 2px)',
@@ -53,5 +64,5 @@ export default {
       },
     },
   },
-  plugins: [require('tailwindcss-animate')],
+  plugins: [import('tailwindcss-animate')],
 };
