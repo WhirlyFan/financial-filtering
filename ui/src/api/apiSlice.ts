@@ -7,7 +7,7 @@ export const apiSlice = createApi({
   reducerPath: 'api',
   // All of our requests will have URLs starting with '/api'
   baseQuery: fetchBaseQuery({ baseUrl: '/api' }),
-  tagTypes: ['Users', 'CurrentUser'],
+  tagTypes: ['Users', 'CurrentUser', 'FMP'],
   // The "endpoints" represent operations and requests for this server
   endpoints: (builder) => ({
     // The `getUsers` endpoint is a "query" operation that returns data
@@ -16,7 +16,7 @@ export const apiSlice = createApi({
     getFMP: builder.query({
       query: () => '/fmp',
       providesTags: ['FMP'],
-    })
+    }),
     getUsers: builder.query({
       // Based off the reducer path set above, the URL for the request is '/api/users'
       query: () => '/users',
@@ -30,7 +30,7 @@ export const apiSlice = createApi({
       providesTags: ['CurrentUser'],
     }),
     signup: builder.mutation({
-      query: (user: User) => ({
+      query: (user) => ({
         url: '/auth/signup',
         method: 'POST',
         body: user,
@@ -38,7 +38,7 @@ export const apiSlice = createApi({
       invalidatesTags: (result) => (result ? ['CurrentUser'] : []),
     }),
     login: builder.mutation({
-      query: (user: User) => ({
+      query: (user) => ({
         url: '/auth/login',
         method: 'POST',
         body: user,
@@ -56,8 +56,9 @@ export const apiSlice = createApi({
   }),
 });
 
-// Export the auto-generated hook for the `getUsers` query endpoint
+// Export the auto-generated hooks for the API slice
 export const {
+  useGetFMPQuery,
   useGetUsersQuery,
   useGetUserQuery,
   useGetCurrentUserQuery,
