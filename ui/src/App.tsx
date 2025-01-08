@@ -1,8 +1,8 @@
 import './App.css';
 
-import { Route, Routes } from 'react-router-dom';
-import Dashboard from '@/app/dashboard/page';
+import AaplPage from '@/components/aapl/page';
 import { ModeToggle } from '@/components/mode-toggle';
+import { Toaster } from '@/components/ui/toaster';
 
 function App() {
   return (
@@ -10,9 +10,9 @@ function App() {
       <div className="fixed bottom-2 left-2 z-50">
         <ModeToggle />
       </div>
-      <Routes>
-        <Route path="/" element={<Dashboard />} />
-      </Routes>
+      <div className="text-center text-3xl font-bold pt-4 mt-10">AAPL Income Statements</div>
+      <AaplPage />
+      <Toaster />
     </>
   );
 }
