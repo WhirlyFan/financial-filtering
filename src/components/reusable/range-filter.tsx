@@ -68,7 +68,9 @@ export function RangeFilter<TData, TValue>({
               value={minValue}
               onChange={(e) => setMinValue(e.target.value)}
               onKeyDown={handleKeyDown}
-              placeholder={variant === 'currency' ? formatCurrency(range.min) : range.min?.toString()}
+              placeholder={
+                variant === 'currency' ? formatCurrency(range.min) : range.min?.toString()
+              }
               className="w-full border shadow rounded"
             />
           </div>
@@ -79,7 +81,9 @@ export function RangeFilter<TData, TValue>({
               value={maxValue}
               onChange={(e) => setMaxValue(e.target.value)}
               onKeyDown={handleKeyDown}
-              placeholder={variant === 'currency' ? formatCurrency(range.max) : range.max?.toString()}
+              placeholder={
+                variant === 'currency' ? formatCurrency(range.max) : range.max?.toString()
+              }
               className="w-full border shadow rounded"
             />
           </div>

@@ -1,6 +1,6 @@
+import { Table } from '@tanstack/react-table';
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
-import { Table } from '@tanstack/react-table';
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -11,7 +11,6 @@ interface Column {
 }
 
 export const getMinMax = <TData>(table: Table<TData>, columnId: string) => {
-  // react-table
   const allValues = table
     .getRowModel()
     .rows.map((row) => {
