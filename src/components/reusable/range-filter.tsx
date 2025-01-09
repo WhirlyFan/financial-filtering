@@ -4,6 +4,7 @@ import { RiFilterLine } from 'react-icons/ri';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
+import { useToast } from '@/components/ui/use-toast';
 import { formatCurrency, parseCurrency } from '@/lib/utils';
 
 interface RangeFilter<TData, TValue> {
@@ -21,9 +22,15 @@ export function RangeFilter<TData, TValue>({
 }: RangeFilter<TData, TValue>) {
   const [minValue, setMinValue] = useState<string>('');
   const [maxValue, setMaxValue] = useState<string>('');
+  const { toast } = useToast();
 
   const applyFilter = () => {
     if (!minValue || !maxValue) {
+      toast({
+        title: 'Error',
+        description: 'Min and Max values are required',
+        variant: 'destructive',
+      });
       return;
     }
     if (variant === 'currency') {

@@ -3,6 +3,21 @@
 A financial data filtering app using data from a single API endpoint. The app fetches
 annual income statements for AAPL (Apple) and allow users to filter and analyze key metrics
 
+## Features
+- Filtering by Year, Revenue, and Net Income (Minimal error handling via toast alerts)
+- Sorting each column by ascending/descending
+- Dark/Light Mode Toggle via button in bottom left
+- Moveable columns
+- Ability to hide columns
+- Access to full JSON per Income Statement via Actions column drop down menu
+- Customizable rows per page
+- Pagination (Option to use dummy data to show multiple rows as API is limited to 5 responses)
+
+
+## Live Demo
+Project is deployed and live on Render!
+![DataTable Image](src/assets/datatable.png)
+
 ## Getting started
 NOTE: This is assuming you have Node>=16.19.1 installed
 
@@ -15,7 +30,7 @@ NOTE: This is assuming you have Node>=16.19.1 installed
       ```
       npm install -g pnpm
       ```
-2. Install and run the dev server (make sure to do this in the /ui/ directory)
+2. Install and run the dev server (Don't forget to run these commands in the working directory!)
       ```
       pnpm install
       ```
@@ -32,4 +47,5 @@ NOTE: This is assuming you have Node>=16.19.1 installed
       pnpm run prettier
       ```
 
-Live Project Deployed on Render!
+5. Create .env file using .env.example
+      - I will be removing this .env.example later as this is not good practice to expose API keys
