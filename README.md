@@ -13,12 +13,19 @@ annual income statements for AAPL (Apple) and allow users to filter and analyze 
 - Customizable rows per page
 - Pagination (Option to use dummy data to show multiple rows as API is limited to 5 responses)
 
+## TODO
+- Display current filters under each filter option
+- Add Delete and Edit modals to Actions
+- Add react-router-dom to allow routing to an Income Statement page
+- Refactor to allow for multiple companies to have their own DataTable
 
 ## Live Demo
-Project is deployed and live on Render!
 ![DataTable Image](src/assets/datatable.png)
 
-## Getting started
+- Project is deployed and live on Render! (It's hosted on a free tier so you may need to wait up to 50 seconds for it to load)
+- Link: https://financial-filtering.onrender.com
+
+## Getting started locally
 NOTE: This is assuming you have Node>=16.19.1 installed
 
 1. To run the Vite React App in development install pnpm if not already installed
