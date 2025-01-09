@@ -1,8 +1,7 @@
 import { useState } from 'react';
 import {
-  ColumnDef,
   ColumnFiltersState,
-  ColumnOrderState, //HERE
+  ColumnOrderState,
   flexRender,
   getCoreRowModel,
   getFacetedRowModel,
@@ -14,8 +13,8 @@ import {
   useReactTable,
   VisibilityState,
 } from '@tanstack/react-table';
-import { DataTableFacetedFilter } from '@/components/reusable/faceted-filter';
 import { DataTablePagination } from '@/components/reusable/pagination-controls';
+import { RangeFilter } from '@/components/reusable/range-filter';
 import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
@@ -23,7 +22,6 @@ import {
   DropdownMenuContent,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { Input } from '@/components/ui/input';
 import { Separator } from '@/components/ui/separator';
 import {
   Table,
@@ -34,13 +32,8 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
-import { getDropDownValues } from '@/lib/utils';
-
-interface DataTableProps<TData, TValue> {
-  columns: ColumnDef<TData, TValue>[];
-  data: TData[];
-  // table: TanstackTable<TData>; //HERE
-}
+import { getMinMax } from '@/lib/utils';
+import { DataTableProps } from '@/types/aapl';
 
 export function DataTable<TData, TValue>({ columns, data }: DataTableProps<TData, TValue>) {
   //STATES:
@@ -103,33 +96,33 @@ export function DataTable<TData, TValue>({ columns, data }: DataTableProps<TData
       <div className="flex justify-between py-4">
         <div className="flex gap-3">
           {/* Filters */}
-          <div>
-            {/* Change to Date Range Picker */}
+          <div className="flex-col">
             {table.getColumn('date') && (
-              <DataTableFacetedFilter
-                column={table.getColumn('date')}
-                title="Date"
-                options={getDropDownValues(data, 'date')}
+              <RangeFilter
+                column={table.getColumn('date')!}
+                range={getMinMax(table, 'date')}
+                title="Year"
+                variant="date"
               />
             )}
           </div>
           <div className="flex-col">
-            {/* Change to select user-specified range */}
             {table.getColumn('revenue') && (
-              <DataTableFacetedFilter
-                column={table.getColumn('revenue')}
+              <RangeFilter
+                column={table.getColumn('revenue')!}
                 title="Revenue"
-                options={getDropDownValues(data, 'revenue')}
+                range={getMinMax(table, 'revenue')}
+                variant="currency"
               />
             )}
           </div>
           <div className="flex-col">
-            {/* Change to select user-specified range */}
             {table.getColumn('netIncome') && (
-              <DataTableFacetedFilter
-                column={table.getColumn('netIncome')}
+              <RangeFilter
+                column={table.getColumn('netIncome')!}
                 title="Net Income"
-                options={getDropDownValues(data, 'netIncome')}
+                range={getMinMax(table, 'netIncome')}
+                variant="currency"
               />
             )}
           </div>

@@ -1,3 +1,11 @@
+import { ColumnDef } from '@tanstack/react-table';
+
+export interface DataTableProps<TData, TValue> {
+  columns: ColumnDef<TData, TValue>[];
+  data: TData[];
+  // table: TanstackTable<TData>; //HERE
+}
+
 export type AaplDataType = {
   date: string;
   symbol: string;

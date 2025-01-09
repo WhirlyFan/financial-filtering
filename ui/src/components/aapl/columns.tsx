@@ -1,4 +1,4 @@
-import { ColumnDef } from '@tanstack/react-table';
+import { ColumnDef, FilterFn } from '@tanstack/react-table';
 import {
   HiArrowsUpDown,
   HiOutlineArrowLeftCircle,
@@ -16,8 +16,16 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { moveColumnsDown, moveColumnsUp } from '@/lib/utils';
+import { formatCurrency, moveColumnsDown, moveColumnsUp } from '@/lib/utils';
 import { AaplDataType } from '@/types/aapl';
+
+const yearRangeFilter: FilterFn<AaplDataType> = (row, columnId, filterValue) => {
+  if (!filterValue || !filterValue.min || !filterValue.max) return true;
+  const dateStr = row.getValue(columnId) as string;
+  const rowYear = new Date(dateStr).getFullYear();
+
+  return rowYear >= filterValue.min && rowYear <= filterValue.max;
+};
 
 export const columns: ColumnDef<AaplDataType>[] = [
   {
@@ -74,6 +82,7 @@ export const columns: ColumnDef<AaplDataType>[] = [
         </div>
       );
     },
+    filterFn: yearRangeFilter,
   },
   {
     accessorKey: 'revenue',
@@ -108,14 +117,7 @@ export const columns: ColumnDef<AaplDataType>[] = [
     },
     cell: ({ row }) => {
       const { revenue } = row.original;
-      return (
-        <div className="font-medium text-left ">
-          {Intl.NumberFormat('en-US', {
-            style: 'currency',
-            currency: 'USD',
-          }).format(revenue)}
-        </div>
-      );
+      return <div className="font-medium text-left ">{formatCurrency(revenue)}</div>;
     },
   },
   {
@@ -151,14 +153,7 @@ export const columns: ColumnDef<AaplDataType>[] = [
     },
     cell: ({ row }) => {
       const { netIncome } = row.original;
-      return (
-        <div className="font-medium text-left ">
-          {Intl.NumberFormat('en-US', {
-            style: 'currency',
-            currency: 'USD',
-          }).format(netIncome)}
-        </div>
-      );
+      return <div className="font-medium text-left ">{formatCurrency(netIncome)}</div>;
     },
   },
   {
@@ -194,14 +189,7 @@ export const columns: ColumnDef<AaplDataType>[] = [
     },
     cell: ({ row }) => {
       const { grossProfit } = row.original;
-      return (
-        <div className="font-medium text-left ">
-          {Intl.NumberFormat('en-US', {
-            style: 'currency',
-            currency: 'USD',
-          }).format(grossProfit)}
-        </div>
-      );
+      return <div className="font-medium text-left ">{formatCurrency(grossProfit)}</div>;
     },
   },
   {
@@ -269,21 +257,14 @@ export const columns: ColumnDef<AaplDataType>[] = [
     },
     cell: ({ row }) => {
       const { operatingIncome } = row.original;
-      return (
-        <div className="font-medium text-left ">
-          {Intl.NumberFormat('en-US', {
-            style: 'currency',
-            currency: 'USD',
-          }).format(operatingIncome)}
-        </div>
-      );
+      return <div className="font-medium text-left ">{formatCurrency(operatingIncome)}</div>;
     },
   },
   {
     id: 'actions',
+    header: 'Actions',
     cell: ({ row }) => {
       const incomeStatement = row.original;
-      console.log(row);
       return (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
