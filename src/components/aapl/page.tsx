@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { DataTableSkeleton } from '@/components/DataTableSkeleton';
 import { aaplData } from '@/data/aaplData';
 import { AaplDataType } from '@/types/aapl';
 import { columns } from './columns';
@@ -29,7 +30,9 @@ export default function AaplPage() {
         // Handle error
         console.error('Error fetching data:', error);
       } finally {
-        setLoading(false);
+        setTimeout(() => {
+          setLoading(false);
+        }, 2000);
       }
     }
 
@@ -39,7 +42,11 @@ export default function AaplPage() {
   if (loading) {
     // Render a loading indicator or message
     // Replace with a skeleton later
-    return <div>Loading...</div>;
+    return (
+      <div className="container mx-auto rounded-md">
+        <DataTableSkeleton />
+      </div>
+    );
   }
 
   //  async function deleteRow(id:string) {
