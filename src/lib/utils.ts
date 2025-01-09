@@ -1,7 +1,6 @@
+import { Table } from '@tanstack/react-table';
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
-import { DataTableProps } from '@/types/aapl';
-import { Table } from '@tanstack/react-table';
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -12,7 +11,6 @@ interface Column {
 }
 
 export const getMinMax = <TData>(table: Table<TData>, columnId: string) => {
-  // react-table
   const allValues = table
     .getRowModel()
     .rows.map((row) => {
@@ -98,19 +96,6 @@ export function parseCurrency(value: string): number {
 
   // Multiply by the appropriate suffix multiplier
   return baseValue * (suffixMultipliers[suffix] || 1);
-}
-
-export function getDropDownValues<TData, TValue extends keyof TData>(
-  data: DataTableProps<TData, TValue>['data'], // Extract 'data' from DataTableProps
-  selector: TValue // Selector must be a key of TData
-) {
-  const uniqueArray = [...new Set(data.map((item) => item[selector]))];
-  const noEmptyValues = uniqueArray.filter((element) => element !== null && element !== '').sort();
-  const optionsArray = noEmptyValues.map((listItem) => ({
-    value: String(listItem),
-    label: String(listItem),
-  }));
-  return optionsArray;
 }
 
 export function moveColumnsDown(columnObj: Column[], columnId: string): string[] {

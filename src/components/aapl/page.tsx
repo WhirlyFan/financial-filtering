@@ -1,12 +1,24 @@
 import { useEffect, useState } from 'react';
+import { DataTableSkeleton } from '@/components/DataTableSkeleton';
+import { Button } from '@/components/ui/button';
 import { aaplData } from '@/data/aaplData';
 import { AaplDataType } from '@/types/aapl';
 import { columns } from './columns';
 import { DataTable } from './data-table';
 
 async function getData(): Promise<AaplDataType[]> {
-  // Fetch data from your API here and return it.
-  return aaplData; // Simply returning fake data
+  const apiKey = import.meta.env.VITE_FMP_API_KEY;
+  console.log(apiKey);
+  const response = await fetch(
+    `https://financialmodelingprep.com/api/v3/income-statement/AAPL?period=annual&apikey=${apiKey}`
+  );
+
+  if (!response.ok) {
+    throw new Error('Network response was not ok');
+  }
+
+  const data = await response.json();
+  return data;
 }
 
 // async function deleteData(id: string): Promise<AapleDataType[]> {
@@ -36,10 +48,35 @@ export default function AaplPage() {
     fetchData();
   }, []);
 
+  const handleDummyData = () => {
+    setData(aaplData);
+  };
+
+  const clearData = () => {
+    setData([]);
+  };
+
+  const refetchData = async () => {
+    setLoading(true);
+    try {
+      const result = await getData();
+      setData(result);
+    } catch (error) {
+      // Handle error
+      console.error('Error fetching data:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   if (loading) {
     // Render a loading indicator or message
     // Replace with a skeleton later
-    return <div>Loading...</div>;
+    return (
+      <div className="container mx-auto rounded-md">
+        <DataTableSkeleton />
+      </div>
+    );
   }
 
   //  async function deleteRow(id:string) {
@@ -56,6 +93,11 @@ export default function AaplPage() {
   return (
     <div className="container mx-auto rounded-md ">
       <DataTable columns={columns} data={data} />
+      <div className="flex justify-center space-x-4">
+        <Button onClick={handleDummyData}>Use Dummy Data</Button>
+        <Button onClick={clearData}>Clear Data</Button>
+        <Button onClick={refetchData}>Refetch Data</Button>
+      </div>
     </div>
   );
 }

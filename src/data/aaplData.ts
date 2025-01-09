@@ -207,7 +207,7 @@ export const aaplData: AaplDataType[] = [
       'https://www.sec.gov/Archives/edgar/data/320193/000032019320000096/aapl-20200926.htm',
   },
   {
-    date: '2020-09-26',
+    date: '2025-01-01',
     symbol: 'AAPL',
     reportedCurrency: 'USD',
     cik: '0000320193',
@@ -215,7 +215,7 @@ export const aaplData: AaplDataType[] = [
     acceptedDate: '2020-10-29 18:06:25',
     calendarYear: '2020',
     period: 'FY',
-    revenue: 274515000000,
+    revenue: 184515000000,
     costOfRevenue: 169559000000,
     grossProfit: 104956000000,
     grossProfitRatio: 0.3823324773,

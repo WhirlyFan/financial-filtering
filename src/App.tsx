@@ -10,7 +10,7 @@ function App() {
       <div className="fixed bottom-2 left-2 z-50">
         <ModeToggle />
       </div>
-      <div className="text-center text-3xl font-bold pt-4 mt-10">AAPL Income Statements</div>
+      <div className="text-center text-3xl font-bold pt-4 my-10">AAPL Income Statements</div>
       <AaplPage />
       <Toaster />
     </>

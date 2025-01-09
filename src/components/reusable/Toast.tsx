@@ -1,7 +1,7 @@
 import { ToastProps } from '@/components/ui/toast';
 import { useToast } from '@/components/ui/use-toast';
 
-interface ToastInterface extends ToastProps {
+export interface ToastInterface extends ToastProps {
   buttonText: string;
   description: string;
 }

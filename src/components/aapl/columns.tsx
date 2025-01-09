@@ -269,7 +269,7 @@ export const columns: ColumnDef<AaplDataType>[] = [
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="ghost" className="w-8 h-8 p-0">
-              <RiMore2Fill></RiMore2Fill>
+              <RiMore2Fill />
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
@@ -280,7 +280,7 @@ export const columns: ColumnDef<AaplDataType>[] = [
               <Toast
                 buttonText={'Copy Income Statement JSON'}
                 description={'Income Statement JSON copied to clipboard'}
-              ></Toast>
+              />
             </DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem>View Income Statement {'(Placeholder)'}</DropdownMenuItem>
